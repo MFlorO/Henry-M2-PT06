@@ -1,11 +1,15 @@
 // Crear un array vacío llamado 'toDoItems'
 // Tu codigo acá:
 
+let toDoItems = []
 
 // En la página 'index.html' hay un elemento span cuyo texto es 'Aplicación creada por:'.
 // Usando querySelector seleccionar dicho span por su id ('createdBy') y luego usando innerHTML
 // agregar tu nombre al final del texto actual. Ej: 'Aplicación creada por Franco'
 // Tu código acá:
+
+let nombreCreadorApi = document.querySelector("#createdBy")
+nombreCreadorApi.innerHTML = "Aplicación creada por María Florencia Oldani" // o `nombreCreadorApi.innerHTML + ${María Florencia Oldani}`
 
 
 
@@ -16,9 +20,11 @@
 // 2) 'complete'    : debe setearse en false
 // Ayuda: usar 'this' en el constructor
 
-function ToDo () {
+function ToDo (description) {
   // Tu código acá:
-
+  this.description = description;
+  this.complete = false;
+ 
 }
 
 
@@ -27,7 +33,9 @@ function ToDo () {
 // Debe setear el atributo 'complete' del ToDo en true
 
 // Tu código acá:
-
+ToDo.prototype.completeToDo = function(){
+ this.complete = true
+}
 
 
 // Agregar dos parámetros a la función 'buildToDo':
@@ -47,12 +55,30 @@ function ToDo () {
 //    7) Agregar 'toDoText' como hijo de 'toDoShell'
 //    8) Devolver la variable toDoShell
 
+// Anteriormente tengo que haber hecho: let todo = new ToDo ("Alguna descripcion")
 
 function buildToDo(todo, index) {
   // Tu código acá:
+ let toDoShell = document.createElement('div'); //1
+
+ toDoShell.className = "toDoShell";  //2
+
+ let toDoText = document.createElement('span');  //3
+
+ toDoText.innerHTML = todo.description; //4
+
+ toDoText.id = index; //5
+
+ if(todo.complete){   //6
+   toDoText.className = "completeText";
+ }
+ 
+ toDoText.appendChild(toDoShell);
+
+ return toDoShell; //8
+
 
 }
-
 // La función 'buildToDos' debe crear un array de objetos toDo y devolverlo
 // Recibirá como parámetro un array de objetos ToDo
 // Utilizar el método map usando la función previamente creada ('buildToDo')
@@ -60,7 +86,13 @@ function buildToDo(todo, index) {
 
 function buildToDos(toDos) {
   // Tu código acá:
+  // toDos es un arreglo. 
+  // toDos = [toDos1, toDos2, toDos3]
 
+
+  return toDos.maps(function(todo,index){
+    return buildToDo(todo, index)
+  })
 }
 
 
