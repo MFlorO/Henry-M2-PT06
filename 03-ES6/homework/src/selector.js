@@ -18,6 +18,14 @@ var traverseDomAndCollectElements = function(matchFunc, startEl) {
 
 var selectorTypeMatcher = function(selector) {
   // tu código aquí
+  if(selector[0] === "#") return "id";
+  if(selector[0] === ".") return "class";
+  if(selector.split(".").length > 1) return "tag.class"; // Me toma "tag.Class" y me devuelve ["tag","Class"]
+  else {
+    return "tag"
+  }
+  
+
   
 };
 
@@ -30,14 +38,36 @@ var matchFunctionMaker = function(selector) {
   var selectorType = selectorTypeMatcher(selector);
   var matchFunction;
   if (selectorType === "id") { 
+    matchFunction = function (elemento){
+      return `#${elemento.id}` === selector;
+    }
    
   } else if (selectorType === "class") {
-    
+    matchFunction = function (elemento){
+      
+      let classes = elemento.classList; //[class1 , class2, class3]
+
+      for(let i = 0; i < classes.length ;i++){
+        if("." + classes[i] === selector) return true;
+      }
+      return false;
+    }
+   
   } else if (selectorType === "tag.class") {
-    
+    matchFunction = function (elemento){
+
+      let [tagBuscado, classBuscada] = selector.split(".");
+      return matchFunctionMaker(tagBuscado)(elemento) && matchFunctionMaker(`.${classBuscada}`)(elemento);
+
+    }
+
   } else if (selectorType === "tag") {
+    matchFunction = function (elemento){
+
+    return elemento.tagName.toLowerCase() === selector;
     
   }
+ }
   return matchFunction;
 };
 

@@ -1,4 +1,4 @@
-describe("selectorTypeMatcher", function() {
+  describe("selectorTypeMatcher", function() {
   it("debe retornar el tipo 'id' para un selector de id", function() {
     var type = selectorTypeMatcher('#pagetitle');
     expect(type).toEqual("id");
