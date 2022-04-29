@@ -9,7 +9,8 @@ let toDoItems = []
 // Tu código acá:
 
 let nombreCreadorApi = document.querySelector("#createdBy")
-nombreCreadorApi.innerHTML = "Aplicación creada por María Florencia Oldani" // o `nombreCreadorApi.innerHTML + ${María Florencia Oldani}`
+nombreCreadorApi.innerHTML = "Aplicación creada por María Florencia Oldani" 
+// o `nombreCreadorApi.innerHTML + ${María Florencia Oldani}` o document.querySelector("#createdBy").innerHTML += " Aplicación creada por María Florencia Oldani" 
 
 
 
@@ -59,21 +60,23 @@ ToDo.prototype.completeToDo = function(){
 
 function buildToDo(todo, index) {
   // Tu código acá:
- let toDoShell = document.createElement('div'); //1
+ const toDoShell = document.createElement("div"); //1
 
  toDoShell.className = "toDoShell";  //2
+ // o toDoShell.classList.add("toDoShell") o 
 
- let toDoText = document.createElement('span');  //3
+ let toDoText = document.createElement("span");  //3
 
  toDoText.innerHTML = todo.description; //4
 
  toDoText.id = index; //5
 
- if(todo.complete){   //6
+ if(todo.complete === true){   //6
    toDoText.className = "completeText";
- }
+ } //Si es true asigna una clase si es false no hace nada
  
- toDoText.appendChild(toDoShell);
+ toDoShell.appendChild(toDoText); // 7
+ //toDoText es HIJO de toDoShell
 
  return toDoShell; //8
 
@@ -87,11 +90,10 @@ function buildToDo(todo, index) {
 function buildToDos(toDos) {
   // Tu código acá:
   // toDos es un arreglo. 
-  // toDos = [toDos1, toDos2, toDos3]
+  // toDos = [toDos1{description1}, toDos2{description2}, toDos3{description3}]
 
-
-  return toDos.maps(function(todo,index){
-    return buildToDo(todo, index)
+  return toDos.maps(function(toDo,index){
+    return buildToDo(toDo, index)
   })
 }
 
@@ -108,6 +110,21 @@ function buildToDos(toDos) {
 function displayToDos() {
   // Tu código acá:
 
+  const toDoContainer = document.querySelector("#toDoContainer"); //1
+
+  toDoContainer.innerHTML = "" //2
+
+  buildToDos(toDoItems).forEach(elemento => {
+    toDoContainer.appendChild(elemento)
+  }); //3 y 4
+
+
+  // const buildTodos = buildToDos(toDoItems).
+  // for(let i = 0; i < buildTodos.length; i++){ //4
+  //   const elemento =  buildTodos[i];
+  //   toDoContainer.appendChild(elemento)
+  // }
+
 }
 
 
@@ -120,9 +137,13 @@ function displayToDos() {
 //  3) Setear el valor del input toDoInput como un string vacio ("") (Esto se realiza para que en la vista se borre lo que se encontraba escrito)
 //  4) Llamar a la función displayToDos para que se actualicen los toDos mostrados en pantalla
 
-function addToDo() {
+function addToDo() {  //REVEEEER!!!!!!!!!!!!!!!1
   // Tu código acá:
-
+  const toDoInput = document.querySelector("#toDoInput")
+  const todo = new ToDo (toDoInput.value)
+  toDoItems.push(todo)
+  toDoInput.value = ""
+  displayToDos()
 }
 
 // Agregar un 'Event Listener' para que cada vez que el botón 'AGREGAR' sea clickeado
@@ -132,6 +153,10 @@ function addToDo() {
 
 // Tu código acá:
 
+const addButton = document.querySelector("#addButton")
+//addButton.addEventListener("click",function(){addToDo()}) //1
+ addButton.onclick = function(){ addToDo() } // 2
+// 1 me permite agregar varios eventos y el 2 solo uno, si despues el 2 lo vuelvo a usar.. lo piso
 
 // La función completeToDo se va a ejecutar cuando queramos completar un todo
 // [NOTA: Algunas cuestiones a tener en cuenta
@@ -145,12 +170,14 @@ function addToDo() {
 //   3) En la función 'buildToDo' agregar un 'click' event listener al elemento 'toDoText', pasándole
 //      esta función como callback
 
-function completeToDo(event) {
+function completeToDo(event) { //REVEEEER !!!!!!!!!!!!!!!!!!
   // DESCOMENTAR LA SIGUIENTE LINEA
-  // const index = event.target.id;
+  const index = event.target.id;
   // Tu código acá:
-
+  toDoItems[index].completeToDo();
+  displayToDos()
 }
+
 
 // Una vez que llegaste a este punto verificá que todos los tests pasen
 
@@ -170,6 +197,7 @@ function completeToDo(event) {
 
 // Acá debes insertar la llamada a 'displayToDos'
 
+displayToDos()
 
 // ---------------------------- NO CAMBIES NADA DE ACÁ PARA ABAJO ----------------------------- //
 if (typeof module !== 'undefined') {
