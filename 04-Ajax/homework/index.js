@@ -40,3 +40,6 @@ $("#search").click(function(){
    amigoSinId.innerText = "TENES QUE AGREGAR UN ID"
   }
 })
+
+
+
