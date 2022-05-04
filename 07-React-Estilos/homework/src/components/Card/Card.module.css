@@ -1,0 +1,93 @@
+.divNoCains{
+    padding: 10px;
+    border: 3px solid #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 8px;
+    width: 25%;
+    background-color: #ccc;
+    color: black;
+    box-shadow: 0px 0px 5px rgb(181, 180, 180) inset;
+    align-items: center;
+    align-content: center;
+
+}
+
+.divCains{
+    padding: 10px;
+    border: 3px solid black;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 8px;
+    width: 25%;
+    background-color: black;
+    color: white;
+    box-shadow: 0px 0px 5px rgb(11, 11, 11) inset;
+    align-items: center;
+    align-content: center;
+
+}
+
+
+
+
+.boton{
+ display: block;
+ float: right;
+ font-size: 9px;
+ padding: 4px;
+ margin: 4px;
+ font-weight: bold;
+ align-items: flex-end;
+ background-color: red;
+ color: white;
+ border-radius: 10px;
+}
+
+.boton:hover{
+    background-color: black;
+    color: white;
+}
+
+
+.h4{
+    clear: both;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+
+.div{
+    display: inline-block;
+    justify-content: space-around;
+    padding: 12px;
+    margin: 12px;
+}
+
+.p1{
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.p2{
+    font-style: italic;
+}
+
+
+.img{
+    padding: 0px;
+    margin: 0px;
+    animation: movimiento 200ms linear;
+}
+
+@keyframes movimiento{
+    from{
+        visibility: visible;
+
+    }
+    to {
+        visibility: hidden;
+    
+    }
+}
