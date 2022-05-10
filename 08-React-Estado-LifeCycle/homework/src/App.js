@@ -48,6 +48,8 @@ export default function App() {
      tengo que agregarselo antes a "Nav" */}
 
      <Cards cities={cities} onClose={onClose}/>
+     {/* //onClose esta en "card" */}
+     
    </div>
  );
 }
