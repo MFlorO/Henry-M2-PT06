@@ -1,0 +1,19 @@
+
+form{
+    margin-top: 0.5%;
+
+}
+
+.input{
+    background-color: rgb(49, 49, 49);
+    border: 3px solid green;
+    color: green;
+
+}
+
+.input:hover{
+    background-color: green;
+    border: 3px solid green;
+    color: white;
+
+}
