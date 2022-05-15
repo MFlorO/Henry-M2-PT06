@@ -5,15 +5,16 @@ form{
 }
 
 .input{
-    background-color: rgb(49, 49, 49);
-    border: 3px solid green;
-    color: green;
+    background-color: #F0F0F0;
+    border: 3px solid #F0F0F0;
+    box-shadow: 0px 0px 3px #b9b7b7 ;
+    color: black;
 
 }
 
 .input:hover{
-    background-color: green;
-    border: 3px solid green;
-    color: white;
-
+    background-color: #FFFF00;
+    border: 3px solid #FFFF00;
+    color: black;
+    box-shadow: 0px 0px 2px #f0f002 inset;
 }
