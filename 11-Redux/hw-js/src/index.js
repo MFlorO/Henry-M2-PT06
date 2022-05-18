@@ -15,7 +15,7 @@ function renderContador() {
   // Obtenemos la propiedad 'contador' de nuestro store:
   
   // Seteamos el numero obtenido como texto dentro del elemento con id 'valor':
-  valor.innerHTML = store.getState().contador()
+  valor.innerHTML = store.getState().contador;
 }
 
 // Ejecutamos la funcion 'renderContador':
@@ -25,23 +25,24 @@ renderContador();
 
 // Nos subscribimos al store pasandole la misma funcion. Asi cada vez que llegue una accion, ejecutamos la funcion:
 
-store.subscribe(() => console.log(renderContador())) 
+// OTRA FORMA: store.subscribe(() => console.log(renderContador())) 
 
-// OTRA FORMA: store.subscribe(renderContador)) 
+ store.subscribe(renderContador);
 
 
 // Por ultimo, utilizamos los botones de nuestro HTML para que cada vez que hagamos click,
 // hagan un dispatch al store de la accion correspondiente:
 
-const botonincremento = Document.getElementById("incremento");
+// const botonincremento = Document.getElementById("incremento");
 
-botonincremento.onclick = () =>{
-  store.dispatch(incremento()) //Se ejecuta la funcion incremento que creamos en actions
-}
+// botonincremento.onclick = () =>{
+//   store.dispatch(incremento()) //Se ejecuta la funcion incremento que creamos en actions
+// }
+
+document.getElementById("incremento").onclick = () => store.dispatch(incremento()) 
+
+//Se ejecuta la funcion incremento que creamos en actions
 
 
-const botondecremento = Document.getElementById("decremento");
 
-botondecremento.onclick = () =>{
-  store.dispatch(decremento())
-}
+document.getElementById("decremento").onclick = () => store.dispatch(decremento())
