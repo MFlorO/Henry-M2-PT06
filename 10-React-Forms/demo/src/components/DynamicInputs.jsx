@@ -1,36 +1,52 @@
 import React, { useState } from 'react';
 
-// Este es el Form con inputs dinamicos que armamos en el README.md de la teoria.
 
 function DinamicInputs() {  
+
+
   const modeloFamiliar = { nombre: '' };
+
+  
   const [familiar, setFamiliar] = useState([
     { ...modeloFamiliar },
   ]);
+
 
   const [persona, setPersona] = useState({
     nombre: '',
   });
 
+
   const agregaFamiliar = () => {
       setFamiliar([...familiar, { ...modeloFamiliar }]);
   };
 
-  const handlePersonaChange = (e) => setPersona({
+
+//Creo una funcion donde me agrupe todos los estados. NO CONTROLO LO QUE EL USUARIO ESCRIBE!!! 
+//SOLO GUARDA EL VALOR
+  const handlePersonaChange = (e) => 
+    setPersona({ 
     ...persona,
     [e.target.name]: e.target.value,
-  });
+  }); //Utilizo bracket notation para guardar el name del input = guardo el valor de ese input
 
+
+  
   const handleFamiliarChange = (e) => {
     const familiares = [...familiar];
     familiares[e.target.id][e.target.dataset.name] = e.target.value;
     setFamiliar(familiares);
   };
 
+
+
   const handleSubmit = e => {
     e.preventDefault()
     console.log(familiar)
   }
+
+
+
 
   return (        
     <form onSubmit={handleSubmit}>            

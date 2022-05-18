@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 
+
+
+
 function Ejemplo({lang}) {
-  if (lang === 'hun') {
-    return (
-      <form>
+  if (lang === 'hun') { //Si el lenguaje es hungaro
+    return ( //Retorna este formulario
+      <form> 
         <input key="lastName" type="text" placeholder="Vezetéknév" name="lastName"/>
         <input key="firstName" type="text" placeholder="Keresztnév" name="firstName"/>
         <input key="middleInitial" type="text" placeholder="KB" style={{width: 30}} name="middleInitial"/> 
       </form>
       )
   }
-  return (
+  return ( // Sino... retorna este
       <form>
         <input key="firstName" type="text" placeholder="First Name" name="firstName"/> 
         <input key="middleInitial" type="text" placeholder="MI" style={{width: 30}} name="middleInitial"/> 
@@ -19,11 +22,16 @@ function Ejemplo({lang}) {
     );
 }
 
+
+//########### SON DOS FUNCIONES APARTES (COMPONENTES DISTINTOS) QUE SE VINCULAN ##############
+
+
+
 export default function Lang() {
   const [lang, setLang] = useState('hun');
 
   return <div>
     <Ejemplo lang={lang} />
-    <button onClick={(e) => setLang((old) => setLang(old == 'hun' ? 'es' : 'hun'))}>Lang</button>
+    <button onClick={(e) => setLang((old) => setLang(old === 'hun' ? 'es' : 'hun'))}>Lang</button>
      </div>
-}
+} 
