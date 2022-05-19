@@ -70,7 +70,8 @@ export default function Form() {
         value={input.password} 
         onChange={handleInputChange}
         placeholder="Password"/>
-        {errors.password && (<p className="danger">{errors.password}</p>)}
+        {!errors.password ? null : (<p className="danger">{errors.password}</p>)}
+        {/* {errors.password && (<p className="danger">{errors.password}</p>)} */}
 
       </div>
       
