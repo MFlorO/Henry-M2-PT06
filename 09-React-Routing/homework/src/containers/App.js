@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route} from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 
 import './App.css';
 import Nav from '../components/Nav.jsx';
@@ -51,23 +51,43 @@ function App() {
     }
   }
 
+
+
+  // return (
+  //     <div className="App">
+          
+  //     <Route path='/' render={() => <Nav onSearch={onSearch} />}></Route>
+    
+  //     <Route exact path='/' render={() => <Cards cities={cities} onClose={onClose} />}></Route>
+
+  //     <Route path='/about'><About /></Route>
+
+  //     <Route path='/ciudad/:Id' 
+  //     render={npm({match}) => <Ciudad city={onFilter(match.params.Id)} />} >
+  //     </Route>
+
+  //   </div>
+  // ); 
+
+
+
   return (
     <div className="App">
-      
-       
-      <Route path='/' render={() => <Nav onSearch={onSearch} />}></Route>
-    
-      <Route exact path='/' render={() => <Cards cities={cities} onClose={onClose} />}></Route>
+        
+       <Route path="/"><Nav onSearch={onSearch} /></Route>
+       {/* El path del Nav va sin en "/" porque quiero que siempre figure */}
 
-      <Route path='/about'><About /></Route>
+       <Switch>
 
-      <Route path='/ciudad/:Id' 
-      render={({match}) => <Ciudad city={onFilter(match.params.Id)} />} >
-      </Route>
+           <Route exact path="/"><Cards cities={cities} onClose={onClose} /></Route>
+           <Route path="/about"><About /></Route>
+           <Route path="/ciudad/:ciudadId">{({match}) => < Ciudad city = {onFilter(match.params.Id)}/>}</Route>
 
+      </Switch>
 
     </div>
   );
+
 }
 
 export default App;
