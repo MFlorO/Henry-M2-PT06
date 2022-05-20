@@ -1,9 +1,9 @@
 const { createStore } = require('redux');
-const contador = require('./reducer');
+const reducer = require('./reducer');
 const { incremento, decremento } = require('./actions');
 
 // En esta linea creamos nuestro store. Pasandole como parametro nuestro Reducer
-var store = createStore(contador);
+var store = createStore(reducer);
 
 // Obtenemos el elemento con el id `valor`.
 var valor = document.getElementById("valor");
