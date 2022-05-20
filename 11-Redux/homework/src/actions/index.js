@@ -8,8 +8,14 @@ export const DECREMENT = 'DECREMENT';
 
 export const increment = () => {
   // Completa la funcion
+  return {                 //QUE ME RETORNA? UNA ACCION: QUE ES UN OBJETO CON UNA PROPIEDAD "TYPE"
+    type: INCREMENT,
+  }
 };
 
 export const decrement = () => {
   // Completa la funcion
+  return {
+    type: DECREMENT,
+  }
 };
