@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { increment, decrement } from '../actions';
+// import { increment, decrement } from '../actions';
+import * as TodasLasAccions from "../actions/index" // Importo lo mismo que arriba pero de otra forma: 
+                                                    // :* significa importame todo. as: le da un nombre a ese todo.
 
 class Counter extends Component {
 
@@ -52,7 +54,7 @@ const mapStateToProps = (state) => {
 // para que Redux se dé a conocer a este componente.
 
 
-export default connect(mapStateToProps, { increment, decrement })(Counter);
+export default connect(mapStateToProps, TodasLasAccions)(Counter);
 // Conectame mi componente "Counter" con Redux. 
 // Recibe dos argumentos:
 //    1: mapStateToProps: Toma la parte del estado de Redux que quiero y lo retorna como props del componente
