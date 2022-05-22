@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
-// import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import './Favorites.css';
 
-export class ConnectedList extends Component {
+import {removeMovieFavorite} from "../../actions/index"
+
+
+
+
+export  class ConnectedList extends Component {
+
 
   render() {
     return (
@@ -11,6 +17,17 @@ export class ConnectedList extends Component {
         <h2>Películas Favoritas</h2>
         <ul>
           {/* Aqui deberias poner tu lista de peliculas! */}
+
+          {this.props.movies?.map(el =>  // "movies" es mi prop que viene del estado moviesFavourites que es un arreglo de objetos
+          <div key={el.id}>
+             <Link to={`/movie/${el.id}`}>
+               {/* <p>{console.log(e)}</p> */}
+                 <li>{el.title}</li>
+             </Link>
+
+             <button onClick={() => this.props.removeMovieFavorite(el.id)}> X </button>
+          </div>
+          )}
         </ul>
       </div>
     );
@@ -19,4 +36,11 @@ export class ConnectedList extends Component {
 
 
 
-export default (ConnectedList);
+function mapStateToProps (state){
+  return{
+    movies: state.moviesFavourites
+  };
+}
+
+
+export default connect(mapStateToProps,{removeMovieFavorite})(ConnectedList);

@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import './Buscador.css';
 
+import {addMovieFavorite,getMovies} from "../../actions/index.js"
+
 
 
 export class Buscador extends Component {
@@ -11,12 +13,31 @@ export class Buscador extends Component {
     this.state = {
       title: ""
     };
-  }
-  handleChange(event) {
+
+    this.handleChange = this.handleChange.bind(this);
+  };
+
+
+   handleChange (event){
+    
     this.setState({ title: event.target.value });
+  
+
   }
+
+
   handleSubmit(event) {
     event.preventDefault();
+    //ACA DESPACHO LA ACCION GETMOVIE
+    this.props.getMovies(this.state.title) // DONDE VA A ESTAR GUARDADO EL VALOR QUE MI USUARIO PONGA EN EL BOTON BUSCAR?
+                                          // EN EL ESTADO DEL COMPONENTE. DENTRO DE LA PROPIEDAD "TITLE"
+  
+  }
+
+  reset(){
+    this.setState({
+      title: {...this.state,title:""}
+    })
   }
 
   render() {
@@ -32,17 +53,34 @@ export class Buscador extends Component {
               id="title"
               autoComplete="off"
               value={title}
-              onChange={(e) => this.handleChange(e)}
+              onChange={((e) => this.handleChange(e))}
             />
           </div>
           <button type="submit">BUSCAR</button>
+          <button onClick={() => this.reset()}> RESET </button>
         </form>
         <ul>
          {/* Aqui tienes que escribir tu codigo para mostrar la lista de peliculas */}
+         {this.props.movies?.map(e =>
+                                      <div key = {e.imdbID}>
+                                        <Link to={`/movie/${e.imdbID}`}>
+                                          <li>{e.Title}</li>
+                                        </Link>
+                                        <button onClick={() => this.props.addMovieFavorite({title: e.Title, id: e.imdbID})}> FAV </button>
+                                      </div> 
+                                  )} 
         </ul>
       </div>
     );
   }
 }
 
-export default Buscador;
+
+function mapStateToProps (state){
+  return{
+    movies: state.moviesLoaded
+  };
+}
+
+
+export default connect(mapStateToProps,{addMovieFavorite,getMovies})(Buscador);
