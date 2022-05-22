@@ -42,5 +42,9 @@ function mapStateToProps (state){
   };
 }
 
+// export const mapDispatchProps ={
+//       removeMovieFavorite:removeMovieFavorite
+// }
+
 
 export default connect(mapStateToProps,{removeMovieFavorite})(ConnectedList);
