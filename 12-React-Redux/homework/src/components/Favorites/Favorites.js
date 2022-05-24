@@ -18,14 +18,14 @@ export  class ConnectedList extends Component {
         <ul>
           {/* Aqui deberias poner tu lista de peliculas! */}
 
-          {this.props.movies?.map(el =>  // "movies" es mi prop que viene del estado moviesFavourites que es un arreglo de objetos
-          <div key={el.id}>
-             <Link to={`/movie/${el.id}`}>
+          {this.props.movies?.map(pelicula =>  // "movies" es mi prop que viene del estado moviesFavourites que es un arreglo de objetos
+          <div key={pelicula.id}>
+             <Link to={`/movie_detail/${pelicula.id}`}>
                {/* <p>{console.log(e)}</p> */}
-                 <li>{el.title}</li>
+                 <li>{pelicula.title}</li>
              </Link>
 
-             <button onClick={() => this.props.removeMovieFavorite(el.id)}> X </button>
+             <button onClick={() => this.props.removeMovieFavorite(pelicula.id)}> X </button>
           </div>
           )}
         </ul>

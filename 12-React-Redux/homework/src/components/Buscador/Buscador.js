@@ -61,12 +61,12 @@ export class Buscador extends Component {
         </form>
         <ul>
          {/* Aqui tienes que escribir tu codigo para mostrar la lista de peliculas */}
-         {this.props.movies?.map(e =>
-                                      <div key = {e.imdbID}>
-                                        <Link to={`/movie/${e.imdbID}`}>
-                                          <li>{e.Title}</li>
+         {this.props.movies?.map(pelicula =>
+                                      <div key = {pelicula.imdbID}>
+                                        <Link to={`/movie/${pelicula.imdbID}`}>
+                                          <li>{pelicula.Title}</li>
                                         </Link>
-                                        <button onClick={() => this.props.addMovieFavorite({title: e.Title, id: e.imdbID})}> FAV </button>
+                                        <button onClick={() => this.props.addMovieFavorite({title: pelicula.Title, id: pelicula.imdbID})}> ♥ </button>
                                       </div> 
                                   )} 
         </ul>
