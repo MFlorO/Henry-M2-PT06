@@ -35,7 +35,9 @@ const Timer = () => {
     }
 
     return () => clearInterval(intervalo);
-  }, [activo, segundos, tipo]);
+  }, [activo, segundos, tipo]); 
+  //Siempre que el componente se monte se va a ejecutar. Pero solo va a volver a ejecutarse 
+  //cuando se cambien solo los status dentro de []
 
 
 
@@ -46,8 +48,8 @@ const Timer = () => {
 
   function agregaSegundos() {
     // `current` apunta al elemento de entrada de texto montado
-    let ref = myRef.current.value
-    setSegundos(ref)
+    let ref = myRef.current.value //Se guarda en una variable el valor de ese imput
+    setSegundos(ref) //Modifica el estado segundos y me guarda esa varianle ref
 }
 
 
@@ -55,18 +57,18 @@ const Timer = () => {
 
 
   function toggle() {
-    setActivo(!activo);
+    setActivo(!activo); //Me cambia el valor de mi estado al opuesto. si sta en false lo pone en true y si esta en true en false
   }
 
 
 
-  function reset() {
-    setSegundos(0);
+  function reset() { //Vuelve mis valores a los estados originales
+    setSegundos(0); 
     setActivo(false);
   }
   
 
-  function cambioTipo() {
+  function cambioTipo() { //Me cambia el status tipo en contador o cuenta regresiva
     if(tipo === 'Contador') setTipo('Cuenta Regresiva')
     if(tipo === 'Cuenta Regresiva') setTipo('Contador')
 }
@@ -81,7 +83,9 @@ const Timer = () => {
       </div>
       <div className="row">
       <button className={`button button-primary button-primary-${activo ? 'active' : 'inactive'}`} onClick={toggle}>
-          {activo ? 'Pausa' : 'Inicio'}
+          {activo ? 'Pausa' : 'Inicio'} 
+          {/* Si el status activo es igual a false: el boton va a mostrar "inicio", 
+          pero si active es igual a true: el boton va a mostrar "pausa" */}
         </button>
         <button className="button" onClick={reset}>
           Reset
@@ -90,7 +94,12 @@ const Timer = () => {
       <button className="button" onClick={cambioTipo}>
         {tipo}
       </button>
-      {tipo === 'Cuenta Regresiva' && <input type="number" ref={myRef} onChange={agregaSegundos} placeholder="Ingresa Segundos" autoComplete="off"/>}
+      {tipo === 'Cuenta Regresiva' ? <input type="number" ref={myRef} onChange={agregaSegundos} placeholder="Ingresa Segundos" autoComplete="off"/> : null}
+      {/* El boton "cmbioTipo" va a mostrar el tipo. Puede ser "Contador" o "Cuenta Regresiva". 
+      Si el status tipo es igual a cuenta regesiva muestra un imput para ingresar los segundos. */}
+      {/* EL REG={MYREF} SE PONE EN EL INPUT QUE QUIERO QUE CAPTURE */}
+      {/* con la funcion agregar segundos agrego el valor que capto al input */}
+
     </div>
   );
 };
