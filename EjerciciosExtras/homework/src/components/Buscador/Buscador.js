@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {getAllPosts} from "../../actions/index.js"
 
 import './Buscador.css';
+
+// sera en donde buscaremos los posts (llamando a la API) y las mostraremos en forma de lista, 
+// pudiendo filtrarlos buscando en su título, según parámetro de búsqueda ingresado. 
 
 export class Buscador extends Component {
 
@@ -33,7 +37,7 @@ export class Buscador extends Component {
               type="text"
               id="title"
               autoComplete="off"
-              value={ postsSearch}
+              value={postsSearch}
             />
           </div>
           <button type="submit">BUSCAR</button>
@@ -50,4 +54,18 @@ export class Buscador extends Component {
     );
   }
 }
-export default Buscador;
+
+
+export function mapStateToProps(state) {
+  return {
+      posts: state.posts
+  };
+}
+
+export function mapDispatchToProps(dispatch) {
+  return {
+      getAllPosts: () => dispatch(getAllPosts())
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Buscador)
