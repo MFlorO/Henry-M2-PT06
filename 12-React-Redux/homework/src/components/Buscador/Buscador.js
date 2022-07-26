@@ -22,7 +22,6 @@ export class Buscador extends Component {
     
     this.setState({ title: event.target.value });
   
-
   }
 
 
@@ -63,7 +62,7 @@ export class Buscador extends Component {
          {/* Aqui tienes que escribir tu codigo para mostrar la lista de peliculas */}
          {this.props.movies?.map(pelicula =>
                                       <div key = {pelicula.imdbID}>
-                                        <Link to={`/movie/${pelicula.imdbID}`}>
+                                        <Link to={`/movie_detail/${pelicula.imdbID}`}>
                                           <li>{pelicula.Title}</li>
                                         </Link>
                                         <button onClick={() => this.props.addMovieFavorite({title: pelicula.Title, id: pelicula.imdbID})}> ♥ </button>
